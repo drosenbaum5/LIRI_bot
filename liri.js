@@ -112,16 +112,22 @@ function spotifyThis () {
 
    for (i = 3; i < nodeArgs.length; i++){
 
-     songName = songName + nodeArgs[i] + "";
+     songName = songName  + nodeArgs[i] + "+";
 
    }
 
- //var songURL ="" + songName +;
-
-   axios
-    .get(songURL)
+   spotify
+    .search({type: 'track', query: songName})
     .then(function(response) {
-     console.log(response)
+    
+     console.log("Artist: " + response.tracks.items[i].artists[0].name)
+     console.log("------------------------------------------------")
+     console.log("Song Name: " + response.tracks.items[i].name)
+     console.log("------------------------------------------------")
+     console.log("Album Name: " + response.tracks.items[i].album.name)   
+     console.log("------------------------------------------------")
+     console.log("Preview Link: " + response.tracks.items[i].preview_url)
+     
     })
 
     .catch(function(error) {
